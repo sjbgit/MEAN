@@ -1,0 +1,18 @@
+{
+  "name": "Multivision",
+  "version": "0.0.0",
+  "homepage": "https://github.com/sjbgit/MEAN",
+  "authors": [
+    "sjbgit <sjb_strat@hotmail.com>"
+  ],
+  "description": "\"Training Site\"",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ]
+}
