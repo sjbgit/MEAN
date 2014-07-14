@@ -3,7 +3,7 @@
  */
 var express = require('express'),
     stylus = require('stylus'), //add lib
-    logger = require('morgan'),
+    logger = require('morgan'), //importing function
     bodyParser = require('body-parser');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -24,7 +24,7 @@ app.use(stylus.middleware(
         compile: compile
     }
 ));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));//static route to public dir
 
 //match all routes - all requests
 app.get('*', function(req, res) {
