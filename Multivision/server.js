@@ -26,6 +26,10 @@ app.use(stylus.middleware(
 ));
 app.use(express.static(__dirname + '/public'));//static route to public dir
 
+app.get('/partials/:partialsPath', function(req, res) {
+    res.render('partials/' + req.params.partialPath);
+})
+
 //match all routes - all requests
 app.get('*', function(req, res) {
     res.render('index');
