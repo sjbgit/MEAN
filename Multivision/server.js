@@ -35,14 +35,24 @@ db.once('open', function callback() {
 
 });
 
+var messageSchema = mongoose.Schema({message: String});
+var Message = mongoose.model('Message', messageSchema);
+var mongoMessage;
+Message.findOne().exec(function(err, messageDoc){
+   mongoMessage = messageDoc.message;
+});
+
+
 app.get('/partials/:partialPath', function(req, res) {
     res.render('partials/' + req.params.partialPath);
 })
 
 //match all routes - all requests
 app.get('*', function(req, res) {
-    res.render('index');
-})
+    res.render('index', {
+        mongoMessage: mongoMessage
+    });
+});
 
 var port = 3030;
 app.listen(port);
