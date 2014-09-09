@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="js/jquery/jquery-1.10.2.js"></script>-->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular-ui/ui-bootstrap.js"></script>
+    <script src="js/angular-ui/ui-bootstrap-tpls.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="js/app/app.js"></script>
+</head>
+<body ng-app="app">
+<div ng-controller="AlertDemoCtrl">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    <button class='btn btn-default' ng-click="addAlert()">Add Alert</button>
+</div>
+</body>
+</html>
