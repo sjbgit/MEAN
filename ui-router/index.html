@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="app/bower_components/angular/angular.js"></script>
+    <script src="app/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+</head>
+<body ng-app="routeApp">
+<div ng-controller="DemoController">
+    {{test}}
+    <div ui-view></div>
+
+
+    <a ui-sref="home">Home</a><br/>
+    <a ui-sref="start">start 1</a><br/>
+    <a ui-sref="inbox({inboxId: 1})" ui-sref-active="active">inbox 1</a>
+    <a ui-sref="inbox({inboxId: 2})" ui-sref-active="active">inbox 2</a>
+    <a ui-sref="inbox({inboxId: 3})" ui-sref-active="active">inbox 3</a>
+</div>
+
+</body>
+</html>
