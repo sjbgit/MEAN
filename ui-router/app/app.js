@@ -6,9 +6,16 @@ angular.module('routeApp', ['ui.router'])
         $scope.test = 'test - this is it';
         $scope.id = 99;
         $scope.partyLocation = 'my place';
+
+        $scope.urlSubCategory =  'test cat';
+        $scope.urlCode = 'test url code';
     })
     .controller('InboxController', function($scope, $stateParams){
         $scope.inboxId = $stateParams.inboxId;
+    })
+    .controller('PrimaryController', function($scope, $stateParams){
+        $scope.urlSubCategory =  $stateParams.urlSubCategory;
+        $scope.urlCode =  $stateParams.urlCode;
     })
     .config(function($stateProvider, $urlRouterProvider) {
 
@@ -40,5 +47,19 @@ angular.module('routeApp', ['ui.router'])
                     $scope.location = $stateParams.partyLocation;
                 }
             })
+
+            .state('participant', {
+                url: '/{urlSubCategory}/{urlCode}',
+                views: {
+                    '': {
+                        templateUrl: 'partials/primary.html',
+                        controller: 'PrimaryController'
+                    }
+                }
+            })
+            .state('invalid', {
+                url: 'p/invalid',
+                template: 'Invalid pulse'
+            });
 
     });
