@@ -13,6 +13,10 @@ angular.module('routeApp', ['ui.router'])
             $state.go('home');
         }
 
+        $scope.goToParticipant = function() {
+            $state.go('participant', { urlSubCategory: 'goToParticipant-urlSubCat', urlCode: 'goToParticipant-urlCode'  });
+        }
+
     })
     .controller('InboxController', function($scope){
         $scope.inboxId = $stateParams.inboxId;
