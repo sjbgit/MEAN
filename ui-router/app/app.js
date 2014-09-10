@@ -28,6 +28,11 @@ angular.module('routeApp', ['ui.router'])
     })
     .controller('Inbox.PriorityController', function($scope, $stateParams){
 
+        $scope.allNines = 99999;
+        $scope.allEights = 88888;
+        $scope.allSevens = 77777;
+        $scope.allSixes = 66666;
+        $scope.allFives = 55555;
 
     })
     .controller('Inbox.Priority.IdController', function($scope, $stateParams){
@@ -47,6 +52,21 @@ angular.module('routeApp', ['ui.router'])
             .state('start', {
                 url: '/start',
                 templateUrl: 'partials/start.html'
+            })
+
+            .state('nested', {
+                url: '/nested',
+                views: {
+
+                    // the main template will be placed here (relatively named)
+                    '': { templateUrl: 'partials/nested.html' },
+
+                    // the child views will be defined here (absolutely named)
+                    'columnOne@nested': { template: 'Look I am a column ONE!' },
+
+                    // for column two, we'll define a separate controller
+                    'columnTwo@nested': { template: 'Look I am a column! TWO' }
+                }
             })
 
             .state('inbox', {
