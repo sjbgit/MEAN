@@ -30,6 +30,10 @@ angular.module('routeApp', ['ui.router'])
 
 
     })
+    .controller('Inbox.Priority.IdController', function($scope, $stateParams){
+        $scope.id = $stateParams.priorityID;
+
+    })
     .config(function($stateProvider, $urlRouterProvider) {
         //https://github.com/angular-ui/ui-router/wiki/Quick-Reference#stategoto--toparams--options
         $urlRouterProvider.otherwise('/home');
@@ -61,7 +65,8 @@ angular.module('routeApp', ['ui.router'])
 
             .state('inbox.priority.id', {
                 url: '/priority/:priorityID',
-                templateUrl: 'partials/inbox.priority.id.html'
+                templateUrl: 'partials/inbox.priority.id.html',
+                controller: 'Inbox.Priority.IdController'
             })
 
             .state('inbox.other', {
