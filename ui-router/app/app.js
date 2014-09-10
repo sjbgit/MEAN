@@ -4,6 +4,8 @@
 angular.module('routeApp', ['ui.router'])
 .controller('DemoController', function($scope){
         $scope.test = 'test - this is it';
+        $scope.id = 99;
+        $scope.partyLocation = 'my place';
     })
     .controller('InboxController', function($scope, $stateParams){
         $scope.inboxId = $stateParams.inboxId;
@@ -28,6 +30,15 @@ angular.module('routeApp', ['ui.router'])
                 templateUrl: 'partials/inbox.html',
                 controller: 'InboxController'
 
+            })
+
+            .state('partyDetail', {
+                url: '/party/:partyID/:partyLocation',
+                templateUrl: 'partials/partyDetails.html',
+                controller: function($scope, $stateParams) {
+                    $scope.id = $stateParams.partyID;
+                    $scope.location = $stateParams.partyLocation;
+                }
             })
 
     });
