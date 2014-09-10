@@ -18,15 +18,20 @@ angular.module('routeApp', ['ui.router'])
         }
 
     })
-    .controller('InboxController', function($scope){
+    .controller('InboxController', function($scope, $stateParams){
         $scope.inboxId = $stateParams.inboxId;
+        $scope.priorityID = 'testid';
     })
     .controller('PrimaryController', function($scope, $stateParams){
         $scope.urlSubCategory =  $stateParams.urlSubCategory;
         $scope.urlCode =  $stateParams.urlCode;
     })
-    .config(function($stateProvider, $urlRouterProvider) {
+    .controller('Inbox.PriorityController', function($scope, $stateParams){
 
+
+    })
+    .config(function($stateProvider, $urlRouterProvider) {
+        //https://github.com/angular-ui/ui-router/wiki/Quick-Reference#stategoto--toparams--options
         $urlRouterProvider.otherwise('/home');
 
         $stateProvider
@@ -45,6 +50,23 @@ angular.module('routeApp', ['ui.router'])
                 templateUrl: 'partials/inbox.html',
                 controller: 'InboxController'
 
+            })
+
+            .state('inbox.priority', {
+                url: '/priority',
+                templateUrl: 'partials/inbox.priority.html',
+                controller: 'Inbox.PriorityController'
+
+            })
+
+            .state('inbox.priority.id', {
+                url: '/priority/:priorityID',
+                templateUrl: 'partials/inbox.priority.id.html'
+            })
+
+            .state('inbox.other', {
+                url: '/other',
+                templateUrl: 'partials/inbox.other.html'
             })
 
             .state('partyDetail', {
