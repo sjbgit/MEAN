@@ -2,15 +2,19 @@
  * Created by sbunke on 9/8/2014.
  */
 angular.module('routeApp', ['ui.router'])
-.controller('DemoController', function($scope){
+.controller('DemoController', function($scope, $state){
         $scope.test = 'test - this is it';
         $scope.id = 99;
         $scope.partyLocation = 'my place';
 
         $scope.urlSubCategory =  'test cat';
         $scope.urlCode = 'test url code';
+        $scope.goHome = function() {
+            $state.go('home');
+        }
+
     })
-    .controller('InboxController', function($scope, $stateParams){
+    .controller('InboxController', function($scope){
         $scope.inboxId = $stateParams.inboxId;
     })
     .controller('PrimaryController', function($scope, $stateParams){
@@ -49,7 +53,7 @@ angular.module('routeApp', ['ui.router'])
             })
 
             .state('participant', {
-                url: '/{urlSubCategory}/{urlCode}',
+                url: '/p/{urlSubCategory}/{urlCode}',
                 views: {
                     '': {
                         templateUrl: 'partials/primary.html',
