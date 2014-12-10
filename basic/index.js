@@ -1,5 +1,28 @@
 var sql = require('mssql'); 
 
+var express    = require('express'); 		// call express
+var app        = express(); 				// define our app using express
+var bodyParser = require('body-parser');
+
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+var port = process.env.PORT || 8080; 
+
+var router = express.Router(); 
+
+router.get('/', function(req, res) {
+	res.json({ message: 'hooray! welcome to our api!' });	
+});
+
+app.use('/api', router);
+
+app.listen(port);
+
+console.log('Magic happens on port ' + port);
+
 //Data Source=tcp:cxgkje8oaa.database.windows.net,1433;Initial Catalog=bingpulseci;User ID=bingpulse@cxgkje8oaa;Password=PuL$3#P@$$#
 
 var config = {
