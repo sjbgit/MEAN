@@ -20,9 +20,11 @@ var config = {
 
 var query = 'SELECT count(*) as count FROM [dbo].[PulseAggregates]';
     //query = 'select 1 as number';
-    query = 'SELECT top 100 [Id], [Date],[Thread],[Level],[Logger],left([Message], 120),left([Exception], 120) FROM [dbo].[Logs] order by id desc';
+    query = 'SELECT top 100 [Id], [Date],[Thread],[Level],[Logger],[Message],[Exception] FROM [dbo].[Logs] order by id desc';
 
-var runningQuery = 'SELECT top 100 [Id], [Date],[Thread],[Level],[Logger],left([Message], 120),left([Exception], 120) FROM [dbo].[Logs] where message like \'%Message: Main process%\' order by id desc';
+var runningQuery = 'SELECT top 100 [Id], [Date],[Thread],[Level],[Logger],[Message],[Exception] FROM [dbo].[Logs] where message like \'%Message: Main process%\' order by id desc';
+
+var exceptionQuery = 'SELECT top 100 [Id], [Date],[Thread],[Level],[Logger],[Message],[Exception] FROM [dbo].[Logs] where exception <> \'\' order by id desc';
 
 
 var connection = new sql.Connection(config, function(err) {
@@ -105,6 +107,22 @@ router.get('/running', function(req, res) {
     //res.json({ message: 'hooray! welcome to our api!' });   
 });
 
+router.get('/exception', function(req, res) {
+    
+    var request = connection.request();
+
+    request.query(exceptionQuery , function(err, recordset) {
+        // ... error checks
+        if (err != null) {
+            res.json(err);
+        }
+
+        //console.dir(recordset);
+        res.json(recordset);
+    });
+
+    //res.json({ message: 'hooray! welcome to our api!' });   
+});
 
 // more routes for our API will happen here
 
