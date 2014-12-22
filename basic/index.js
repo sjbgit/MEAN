@@ -29,7 +29,7 @@ var exceptionQuery = 'SELECT top 100 [Id], [Date],[Thread],[Level],[Logger],[Mes
 
 var connection = new sql.Connection(config, function(err) {
     // ... error checks
-    console.log(err);
+    console.log(err);   
     // Query
 
     
@@ -49,7 +49,7 @@ var connection = new sql.Connection(config, function(err) {
 
 var request = connection.request();
 
-request.query(query , function(err, recordset) {
+request.query(query , function(err, recordset) { 
         // ... error checks
 
         //console.dir(recordset);
@@ -133,4 +133,4 @@ app.use('/api', router);
 // START THE SERVER
 // =============================================================================
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log('Magic happens on port - ' + port);  
